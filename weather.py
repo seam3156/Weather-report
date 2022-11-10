@@ -1,4 +1,4 @@
-#! venv/bin/python
+#! /bin/python
 
 from bs4 import BeautifulSoup
 import requests
@@ -40,8 +40,8 @@ site = requests.get(url)
 doc = BeautifulSoup(site.text, 'html.parser')
 
 print('')
-weather_description = doc.find_all("div", {"class": "CurrentConditions--phraseValue--2Z18W"})[0]
+weather_description = doc.find_all("div", {"data-testid": "wxPhrase"})[0]
 print(f'the condition is: {weather_description.string}')
 
-temp = doc.find_all('span', {'class': "CurrentConditions--tempValue--3a50n"})[0]
+temp = doc.find_all('span', {'data-testid': "TemperatureValue"})[0]
 print(f'the temperature is: {temp.string}\n')
